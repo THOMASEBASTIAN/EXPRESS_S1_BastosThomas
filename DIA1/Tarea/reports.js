@@ -1,24 +1,38 @@
+// reports.js
 import { Router } from "express";
 const router = Router();
 
-// Datos simulados (luego se reemplazan por DB o JSON real)
+// Datos simulados (mock)
 const campers = [
   { ide: 1, Nombre: "Juan", Apellidos: "Pérez", Ruta: "Node.js", Estado: "Activo", Riesgo: "Alto" },
   { ide: 2, Nombre: "María", Apellidos: "García", Ruta: "JavaScript", Estado: "Activo", Riesgo: "Bajo" },
   { ide: 3, Nombre: "Luis", Apellidos: "Ramírez", Ruta: "Python", Estado: "Inactivo", Riesgo: "Alto" }
 ];
 
-// Endpoint: listar campers con riesgo alto
-router.get("/highrisk", (req, res) => {
-  const highRiskCampers = campers.filter(c => c.Riesgo === "Alto");
+// 📊 Reporte general (todos los campers)
+router.get("/general", (req, res) => {
+  res.json({
+    message: "Reporte general de campers",
+    total: campers.length,
+    data: campers
+  });
+});
 
-  if (highRiskCampers.length === 0) {
-    return res.json({ message: "No se encontraron campers con riesgo alto." });
-  }
+// 🔎 Reporte por ID
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const camper = campers.find(c => String(c.ide) === id);
+  if (!camper) return res.status(404).json({ error: "Camper no encontrado" });
+  res.json({ message: `Reporte del camper ${id}`, data: camper });
+});
 
+// ⚠️ Reporte de riesgo alto
+router.get("/risk/high", (req, res) => {
+  const highRisk = campers.filter(c => c.Riesgo === "Alto");
   res.json({
     message: "Campers con riesgo alto",
-    data: highRiskCampers
+    total: highRisk.length,
+    data: highRisk
   });
 });
 

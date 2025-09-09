@@ -1,26 +1,26 @@
-// app.js
-import express from "express";
-import coordinatorRoutes from "./coordinator.js";
-import menuRoutes from "./menus.js";
-import reportRoutes from "./reports.js";
+const express = require('express');
+const mongoose = require('mongoose');
+const http = require('http')
+require('dotenv').config();
+
 
 const app = express();
-const PORT = 3000;
 
-// Middleware para leer JSON
-app.use(express.json());
+const  server = http.createServer(app);
 
-// Montar rutas
-app.use("/api/coordinators", coordinatorRoutes);
-app.use("/api/menus", menuRoutes);
-app.use("/api/reports", reportRoutes);
 
-// Ruta de prueba
-app.get("/", (req, res) => {
-  res.send("Servidor Express funcionando ");
-});
+const PORT = process.env.PORT || 3000;
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+const  URI = process.env.URI;
+
+mongoose.connect(URI)
+ .then(() => {
+  console.log('conectado a la bbdd ')
+   app.listen(PORT, () => {
+    console.log(`servidro express escuchado ${PORT}`);
+   });
+ })
+ .catch((err) => {
+   console.error('la base de datos esta mal',err);
+   process.exit(1);
+ })

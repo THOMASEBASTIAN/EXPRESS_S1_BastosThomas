@@ -1,0 +1,442 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Api de campus",
+    "description": "Esta api sirve para manejar el sistema de informacion",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/coordinador/trainers": {
+      "get": {
+        "description": "Obtiene la lista de todos los trainers.",
+        "responses": {
+          "200": {
+            "description": "OK. Retorna una lista de trainers.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Trainer"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "post": {
+        "description": "Crea un nuevo trainer.",
+        "parameters": [
+          {
+            "name": "trainer",
+            "in": "body",
+            "description": "Objeto del trainer a crear.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Trainer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Creado. El trainer fue agregado exitosamente.",
+            "schema": {
+              "$ref": "#/definitions/Trainer"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    },
+    "/coordinador/trainers/{id}": {
+      "get": {
+        "description": "Obtiene un trainer por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Retorna el trainer.",
+            "schema": {
+              "$ref": "#/definitions/Trainer"
+            }
+          },
+          "404": {
+            "description": "No encontrado. El trainer con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "put": {
+        "description": "Actualiza un trainer existente por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "trainer",
+            "in": "body",
+            "description": "Objeto del trainer con los datos actualizados.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Trainer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Retorna el trainer actualizado.",
+            "schema": {
+              "$ref": "#/definitions/Trainer"
+            }
+          },
+          "404": {
+            "description": "No encontrado. El trainer con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "delete": {
+        "description": "Elimina un trainer por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. El trainer ha sido eliminado."
+          },
+          "404": {
+            "description": "No encontrado. El trainer con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    },
+    "/coordinador/campers": {
+      "get": {
+        "description": "Obtiene la lista de todos los campers.",
+        "responses": {
+          "200": {
+            "description": "OK. Retorna una lista de campers.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Camper"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "post": {
+        "description": "Crea un nuevo camper.",
+        "parameters": [
+          {
+            "name": "camper",
+            "in": "body",
+            "description": "Objeto del camper a crear.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Camper"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Creado. El camper fue agregado exitosamente.",
+            "schema": {
+              "$ref": "#/definitions/Camper"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    },
+    "/coordinador/campers/{id}": {
+      "get": {
+        "description": "Obtiene un camper por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Retorna el camper.",
+            "schema": {
+              "$ref": "#/definitions/Camper"
+            }
+          },
+          "404": {
+            "description": "No encontrado. El camper con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "put": {
+        "description": "Actualiza un camper existente por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "camper",
+            "in": "body",
+            "description": "Objeto del camper con los datos actualizados.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Camper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Retorna el camper actualizado.",
+            "schema": {
+              "$ref": "#/definitions/Camper"
+            }
+          },
+          "404": {
+            "description": "No encontrado. El camper con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "delete": {
+        "description": "Elimina un camper por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. El camper ha sido eliminado."
+          },
+          "404": {
+            "description": "No encontrado. El camper con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    },
+    "/coordinador/notas": {
+      "get": {
+        "description": "Obtiene la lista de todas las notas.",
+        "responses": {
+          "200": {
+            "description": "OK. Retorna una lista de notas.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Nota"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "post": {
+        "description": "Crea una nueva nota.",
+        "parameters": [
+          {
+            "name": "nota",
+            "in": "body",
+            "description": "Objeto de la nota a crear.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Nota"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Creado. La nota fue agregada exitosamente.",
+            "schema": {
+              "$ref": "#/definitions/Nota"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    },
+    "/coordinador/notas/{id}": {
+      "get": {
+        "description": "Obtiene una nota por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Retorna la nota.",
+            "schema": {
+              "$ref": "#/definitions/Nota"
+            }
+          },
+          "404": {
+            "description": "No encontrada. La nota con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "put": {
+        "description": "Actualiza una nota existente por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nota",
+            "in": "body",
+            "description": "Objeto de la nota con los datos actualizados.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Nota"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Retorna la nota actualizada.",
+            "schema": {
+              "$ref": "#/definitions/Nota"
+            }
+          },
+          "404": {
+            "description": "No encontrada. La nota con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "delete": {
+        "description": "Elimina una nota por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. La nota ha sido eliminada."
+          },
+          "404": {
+            "description": "No encontrada. La nota con el ID especificado no existe."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Trainer": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "ID único del trainer." },
+        "nombre": { "type": "string" },
+        "apellido": { "type": "string" },
+        "telefono": { "type": "string" },
+        "tipoTrainer": { "type": "string" },
+        "horario": { "type": "string" },
+        "estado": { "type": "string" },
+        "correo": { "type": "string" },
+        "team": { "type": "string" },
+        "date_created": { "type": "string", "format": "date-time" },
+        "date_finished": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nombre", "apellido", "telefono", "correo"]
+    },
+    "Camper": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "ID único del camper." },
+        "nombre": { "type": "string" },
+        "apellido": { "type": "string" },
+        "telefono": { "type": "string" },
+        "tipoCamper": { "type": "string" },
+        "horario": { "type": "string" },
+        "estado": { "type": "string" },
+        "correo": { "type": "string" },
+        "team": { "type": "string" },
+        "date_created": { "type": "string", "format": "date-time" },
+        "date_finished": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nombre", "apellido", "telefono", "correo"]
+    },
+    "Nota": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "ID único de la nota." },
+        "idCamper": { "type": "string", "description": "ID del camper al que pertenece esta nota." },
+        "idTrainer": { "type": "string", "description": "ID del trainer al que pertenece esta nota." },
+        "fecha": { "type": "string", "format": "date-time" },
+        "calificacion": { "type": "number", "description": "La nota numérica." },
+        "observaciones": { "type": "string" }
+      },
+      "required": ["idCamper", "idTrainer", "calificacion"]
+    }
+  }
+}

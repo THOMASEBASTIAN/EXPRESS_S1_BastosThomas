@@ -5,17 +5,16 @@ const trainerController = require("../controllers/trainerController");
 const camperController = require("../controllers/camperControllers");
 
 router.get("/trainers", trainerController.getAllTrainers);
-router.get("/trainers", trainerController.getTrainerById);
-router.get("/trainers", trainerController.createTrainer);
-router.get("/trainers", trainerController.updateTrainer);
-router.get("/trainers", trainerController.deleteTrainer);
+router.get("/trainers/:id", trainerController.getTrainerById);
+router.post("/trainers", trainerController.createTrainer);
+router.put("/trainers/:id", trainerController.updateTrainer);
+router.delete("/trainers/:id", trainerController.deleteTrainer);
 
 router.get("/campers", camperController.getAllCampers);
-router.get("/campers", camperController.getCampersByid);
-router.get("/campers", camperController.createCamper);
-router.get("/campers", camperController.updateCamper);
-router.get("/campers", camperController.deleteCamper);
-
+router.get("/campers/:id", camperController.getCampersByid);
+router.post("/campers", camperController.createCamper);
+router.put("/campers/:id", camperController.updateCamper);
+router.delete("/campers/:id", camperController.deleteCamper);
 
 
 module.exports = router;

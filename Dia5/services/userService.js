@@ -4,18 +4,32 @@ export class UserService{
     }
 
     async createUser(dto){
-        /*
-        Lógica para cuando se ingrese el correo
-        pues no esté existente...
-         */
+        const exists=await this.repo.findByEmail(dto.email);
+        if(exists){
+            throw  new Error('el email ya estaba registrado');
+        }
+        return await this.repo.create(dto);
     }
     async listUser(){
-        /*
-        Limitar a exportar máximo 10 */
+         return await this.repo.findALL({limit:10});
     }
     async getUser(id){
         return this.repo.findById(id);
     }
-    async updateUser(id,dto){}
-    async deleteUser(id){}
-}
+    async updateUser(id,dto){
+      const update = await this.repo.udpateById(id,dto);
+      if (!update){
+        throw new Error("Usuario no existe pails");
+        }
+        return update;
+      }
+      async deleteUser(id){
+        const deleted= await this.repo.deleteById(id);
+        if(!deleted){
+            throw new Error("Usuairo no existe pailas");
+            
+        }
+      }
+
+    }
+   

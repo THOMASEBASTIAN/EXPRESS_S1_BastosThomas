@@ -2,7 +2,7 @@ import { Router } from "express";
 
 // Vista
 export function buidUserRouter(UserController){
-    const router =router();
+    const router = Router();
     Router.get("/",UserController.list)
     Router.get("/:id",UserController.get)
     Router.post("/",UserController.create)

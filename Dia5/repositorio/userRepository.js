@@ -7,12 +7,20 @@ export class UserRepository{
         return this.User.create(data);
 
     }
-    async findAll(){
-        return this.User.find();
+    async findAll({ limit= 0}){
+        return this.User.find().limit(limit);
     }
-    async findByID(id){}
-    async updateByid(id,data){}
-    async deleteByid(id){}
-    async deleteByid(email){}
-    
-}
+    async findByID(id){
+        return this.User.findById(id);
+    }
+    async updateByid(id,data){
+        return this.User.findById(id);
+    }
+    async deleteByid(id){
+        return this.User.findByIdAndUpdate(id,data,{new: true});
+    }
+    async deleteByid(email){
+        return this.User.findByIdAndDelte(id);
+    }
+      
+} 

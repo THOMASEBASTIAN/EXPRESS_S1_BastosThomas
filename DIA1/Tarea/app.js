@@ -6,6 +6,9 @@ import swaggerUi from "swagger-ui-express";
 import dotenv from "dotenv";
 
 import coordinadorRoutes from "./routes/coordinador.js";
+import passport from "./config/passport.js";
+
+
 
 dotenv.config();
 
@@ -20,7 +23,7 @@ const swaggerFile = JSON.parse(fs.readFileSync("./swagger.json", "utf-8"));
 
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(express.json());
-
+app.use(passport.initialize());
 app.use("/coordinador", coordinadorRoutes);
 
 // Conexión a MongoDB

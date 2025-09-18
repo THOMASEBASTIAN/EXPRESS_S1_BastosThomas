@@ -4,7 +4,7 @@ import http from "http";
 import fs from "fs";
 import swaggerUi from "swagger-ui-express";
 import dotenv from "dotenv";
-
+import loginRoutes from "./routes/login.js";
 import coordinadorRoutes from "./routes/coordinador.js";
 import passport from "./config/passport.js";
 
@@ -20,7 +20,7 @@ const URI = process.env.URI;
 
 const swaggerFile = JSON.parse(fs.readFileSync("./swagger.json", "utf-8"));
 
-
+app.use("/auth", loginRoutes);
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(express.json());
 app.use(passport.initialize());
